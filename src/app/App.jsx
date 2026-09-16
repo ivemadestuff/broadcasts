@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 import { Menu } from '@/components/layout/Menu';
 import { Sidebar } from '@/components/layout/Sidebar';
@@ -18,6 +18,7 @@ export default function App() {
   } = useWorkspace();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
+  const menuButtonRef = useRef(null);
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((open) => !open);
@@ -33,8 +34,13 @@ export default function App() {
 
   return (
     <div className="app">
-      <StreamGrid streams={streams} layout={layout} refreshKey={refreshKey} />
-      <Sidebar isMenuOpen={isMenuOpen} onMenuToggle={toggleMenu} onRefresh={handleRefresh} />
+      <StreamGrid streams={streams} layout={layout} refreshKey={refreshKey} inert={isMenuOpen} />
+      <Sidebar
+        isMenuOpen={isMenuOpen}
+        onMenuToggle={toggleMenu}
+        onRefresh={handleRefresh}
+        menuButtonRef={menuButtonRef}
+      />
       <Menu
         layout={layout}
         onLayoutChange={onLayoutChange}
@@ -45,6 +51,7 @@ export default function App() {
         onResetStreams={onResetStreams}
         isOpen={isMenuOpen}
         onClose={closeMenu}
+        returnFocusRef={menuButtonRef}
       />
     </div>
   );

@@ -14,7 +14,7 @@
     {
       "id": "flash-haber",
       "label": "Flash Haber",
-      "playback": { "provider": "youtube", "kind": "video", "videoId": "UHXqe9qf_ZM" }
+      "playback": { "provider": "youtube", "kind": "video", "videoId": "U0JjOs-ayaM" }
     },
     {
       "id": "haber-global",
@@ -39,7 +39,7 @@
     {
       "id": "trt-haber",
       "label": "TRT Haber",
-      "playback": { "provider": "youtube", "kind": "video", "videoId": "vjNZVmImcxg" }
+      "playback": { "provider": "youtube", "kind": "video", "videoId": "myv0L5yK_rY" }
     },
     {
       "id": "tv100",

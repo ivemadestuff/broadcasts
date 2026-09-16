@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { AddStreamForm } from '@/components/layout/AddStreamForm';
 import { LayoutButtons } from '@/components/layout/LayoutButtons';
@@ -16,7 +16,46 @@ export function Menu({
   onResetStreams,
   isOpen,
   onClose,
+  returnFocusRef,
 }) {
+  const panelRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const panel = panelRef.current;
+    const returnFocusTarget = returnFocusRef.current;
+    const getControls = () => panel.querySelectorAll('button:not(:disabled), input:not(:disabled)');
+    (getControls()[0] ?? panel).focus();
+
+    function handleKeyDown(event) {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        onClose();
+      } else if (event.key === 'Tab') {
+        const controls = getControls();
+        const first = controls[0] ?? panel;
+        const last = controls[controls.length - 1] ?? panel;
+        if (
+          event.shiftKey &&
+          (document.activeElement === first || document.activeElement === panel)
+        ) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
+    }
+
+    panel.addEventListener('keydown', handleKeyDown);
+    return () => {
+      panel.removeEventListener('keydown', handleKeyDown);
+      returnFocusTarget?.focus();
+    };
+  }, [isOpen, onClose, returnFocusRef]);
+
   const handleLayoutSelect = useCallback(
     (e) => {
       const value = e.currentTarget.dataset.value;
@@ -36,7 +75,16 @@ export function Menu({
 
   return (
     <>
-      <div className={`menu-panel ${isOpen ? 'open' : ''}`}>
+      <div
+        ref={panelRef}
+        id="stream-menu"
+        className={`menu-panel ${isOpen ? 'open' : ''}`}
+        role="dialog"
+        aria-label="Stream settings"
+        aria-modal={isOpen ? true : undefined}
+        tabIndex={-1}
+        inert={!isOpen}
+      >
         <section className="menu-section">
           <p className="menu-label">GRID</p>
           <LayoutButtons options={STANDARD_LAYOUTS} layout={layout} onSelect={handleLayoutSelect} />

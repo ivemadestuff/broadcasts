@@ -4,7 +4,12 @@ import { StreamCell } from '@/components/streams/StreamCell';
 
 import { LAYOUTS } from '@/constants/layouts';
 
-export const StreamGrid = memo(function StreamGrid({ streams, layout, refreshKey = 0 }) {
+export const StreamGrid = memo(function StreamGrid({
+  streams,
+  layout,
+  refreshKey = 0,
+  inert = false,
+}) {
   const { cols, rows, count } = LAYOUTS[layout] ?? LAYOUTS['3x3'];
 
   const visible = useMemo(
@@ -15,7 +20,7 @@ export const StreamGrid = memo(function StreamGrid({ streams, layout, refreshKey
   const gridStyle = useMemo(() => ({ '--cols': cols, '--rows': rows }), [cols, rows]);
 
   return (
-    <div className="stream-grid" style={gridStyle}>
+    <div className="stream-grid" style={gridStyle} inert={inert}>
       {visible.map((stream, i) => (
         <StreamCell
           key={stream?.id ?? `empty:${i}`}

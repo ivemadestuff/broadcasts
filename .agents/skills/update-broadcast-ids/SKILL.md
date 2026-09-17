@@ -3,7 +3,7 @@ name: update-broadcast-ids
 description: Fix a broken default broadcast id. Use when a default channel shows a dead or unavailable YouTube stream and a new video id or YouTube URL is provided or needs to be found.
 ---
 
-A default broadcast id is dead. Apply `docs/guides/update-broadcast-ids.md` — it is the single source for this flow (the channel list JSON under `src/data/`, then `npm run build`).
+A default broadcast id is dead. Apply `docs/guides/Update-Broadcast-IDs.md` — it is the single source for this flow (the channel list JSON under `src/data/`, then `npm run build`).
 
 Agent additions on top of the guide:
 

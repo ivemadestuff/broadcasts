@@ -66,6 +66,6 @@ The build fails on a broken or duplicate id in `src/data/` — see [`validate-da
 
 ## Guides
 
-### [Update Broadcast IDs](docs/guides/update-broadcast-ids.md)
+### [Update Broadcast IDs](docs/guides/Update-Broadcast-IDs.md)
 
 Refresh dead default broadcast ids by updating the playback target.

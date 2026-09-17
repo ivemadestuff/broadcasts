@@ -2,6 +2,15 @@
 
 Watch multiple live broadcasts in a customizable grid.
 
+## Why?
+
+To follow breaking events in an increasingly chaotic world, all on one screen.
+
+## Live
+
+- [Mirror 1](https://broadcastsapp.pages.dev/)
+- [Mirror 2](https://ivemadestuff.github.io/broadcasts/)
+
 ## Features
 
 - Watch multiple broadcasts side by side with several grid layouts.
@@ -15,7 +24,6 @@ Watch multiple live broadcasts in a customizable grid.
 The app can be installed as a PWA:
 
 - **Desktop (Chrome, Edge, Brave):** Click the install icon at the right end of the address bar.
-- **Android (Chrome):** Menu (⋮) → "Add to Home screen".
 - **iOS (Safari):** Share Button → "Add to Home Screen".
 
 The installed app opens in its own window, without browser bars.

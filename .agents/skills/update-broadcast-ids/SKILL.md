@@ -7,6 +7,7 @@ A default broadcast id is dead. Apply `docs/guides/Update-Broadcast-IDs.md` — 
 
 Agent additions on top of the guide:
 
+0. Before updating the video id, create and switch to the `fix/update-broken-video-id` branch.
 1. The new video arrives either as a bare 11-character id or as a full YouTube URL. Accept both, and never ask for one form when the other was given. Resolve a URL the way `extractYouTubeId` in `src/utils/extractYouTubeId.js` does: it reads `watch?v=`, `live/`, `youtu.be/` and `embed/` links, and `YOUTUBE_ID_PATTERN` in the same file owns the id format.
 2. Confirm the new id is live before editing — the old one is usually already dead. YouTube's oEmbed endpoint answers without a key: `https://www.youtube.com/oembed?url=https://www.youtube.com/watch?v=<id>&format=json` returns 200 with the channel name for a good id, 404 for a dead one.
 3. After the build passes, show the diff and a commit subject in the guide's format, then stop. Never commit, push or open a pull request unless asked.
